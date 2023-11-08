@@ -1,12 +1,12 @@
 "use client";
 
 import { InfoCard } from "@/components/dashboard/InfoCard";
+import { Spotlight } from "@/components/dashboard/Spotlight";
 import { Avatar } from "@chakra-ui/react";
 import {
   Button,
   Card,
   Legend,
-  Metric,
   ProgressCircle,
   Table,
   TableBody,
@@ -16,7 +16,6 @@ import {
   TableRow,
   TextInput,
 } from "@tremor/react";
-import Link from "next/link";
 import { CardSearch } from "solar-icon-set";
 
 enum PlanStatus {
@@ -181,52 +180,15 @@ const Dashboard = () => {
                 colors={["fuchsia", "sky"]}
               />
             </Card>
-            <Card className="w-full flex flex-col justify-between">
-              <div>
-                <h2 className="font-medium">Светофор скиллов</h2>
-                <p className="text-sm text-light-text">Расшифровка метрики</p>
-              </div>
-              <div className="flex">
-                <div className="flex gap-3 w-full">
-                  <div className="w-[6px] h-20 bg-red rounded-full" />
-                  <div>
-                    <Metric>16</Metric>
-                    <p className="text-sm">требуют улучшения</p>
-                    <Link href="/">
-                      <span className="text-sm text-light-text">Подбронее</span>
-                    </Link>
-                  </div>
-                </div>
-                <div className="flex gap-3 w-full">
-                  <div className="w-[6px] h-20 bg-orange rounded-full" />
-                  <div>
-                    <Metric>10</Metric>
-                    <p className="text-sm">в норме</p>
-                    <Link href="/">
-                      <span className="text-sm text-light-text">Подбронее</span>
-                    </Link>
-                  </div>
-                </div>
-                <div className="flex gap-3 w-full">
-                  <div className="w-[6px] h-20 bg-green rounded-full" />
-                  <div>
-                    <Metric>13</Metric>
-                    <p className="text-sm">в норме</p>
-                    <Link href="/">
-                      <span className="text-sm text-light-text">Подбронее</span>
-                    </Link>
-                  </div>
-                </div>
-              </div>
-              <Legend
-                categories={[
-                  "Более 50% не подтверджено",
-                  "20-30% ошибок",
-                  "Менее 20% ошибок",
-                ]}
-                colors={["red", "orange", "green"]}
-              />
-            </Card>
+            <Spotlight
+              description={{
+                red: "требуют улучшения",
+                orange: "вызывают трудности",
+                green: "в норме",
+              }}
+              legend={{ red: "— Более 50% не подтверждено", orange: "— 20–30% ошибок", green: "— Менее 20% ошибок" }}
+              states={{ red: 16, orange: 20, green: 53 }}
+            />
           </div>
           <div className="flex justify-between w-full">
             <h1>Сотрудники</h1>

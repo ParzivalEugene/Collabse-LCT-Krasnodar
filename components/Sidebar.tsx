@@ -24,42 +24,42 @@ const items = [
   {
     name: "Сотрудники",
     icon: <UserId iconStyle="Outline" size={20} />,
-    href: "/settings",
+    href: "/employees",
   },
   {
     name: "Планы адаптации",
     icon: <ClipboardCheck iconStyle="Outline" size={20} />,
-    href: "/c",
+    href: "/adaptation-plans",
   },
   {
     name: "Шаблоны",
     icon: <Document iconStyle="Linear" size={20} />,
-    href: "/d",
+    href: "/templates",
   },
   {
     name: "Материалы",
     icon: <Folder iconStyle="Linear" size={20} />,
-    href: "/e",
+    href: "/docs",
   },
   {
     name: "Чат",
     icon: <Dialog2 iconStyle="Linear" size={20} />,
-    href: "/f",
+    href: "/chat",
   },
   {
     name: "Отчёты",
     icon: <CalculatorMinimalistic iconStyle="Linear" size={20} />,
-    href: "/g",
+    href: "/reports",
   },
   {
     name: "Справка",
     icon: <QuestionCircle iconStyle="Linear" size={20} />,
-    href: "/h",
+    href: "/help",
   },
   {
     name: "Настройки",
     icon: <Settings iconStyle="Linear" size={20} />,
-    href: "/i",
+    href: "/settings",
   },
 ];
 
