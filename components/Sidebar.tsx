@@ -1,5 +1,7 @@
 "use client";
 import { RadioGroup } from "@headlessui/react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 import {
   CalculatorMinimalistic,
@@ -61,8 +63,16 @@ const items = [
   },
 ];
 
+const activeItem = (item: string) => {
+  if (items.map((item) => item.name).includes(item)) {
+    return item;
+  } else return items[0].name;
+};
+
 export const Sidebar = () => {
-  const [selected, setSelected] = useState(items[0]);
+  const pathname = usePathname().slice(1).split("/")[0];
+  const [selected, setSelected] = useState(activeItem(pathname));
+
   return (
     <div className="fixed top-0 left-0 h-screen w-60 flex flex-col px-8 py-6 border-r border-ligth-stroke ">
       <h2 className="font-medium text-center">ProBoard</h2>
@@ -71,14 +81,14 @@ export const Sidebar = () => {
           {items.map((item) => (
             <RadioGroup.Option
               key={item.name}
-              value={item}
+              value={item.name}
               className={({ checked }) =>
                 `${checked ? "bg-blue bg-opacity-20 text-white" : "bg-white"}
                     relative flex cursor-pointer rounded-full p-3 focus:outline-none `
               }
             >
               {({ checked }) => (
-                <>
+                <Link href={item.href}>
                   <div className="flex w-full items-center gap-2">
                     <span
                       className={`h-[20px] w-[20px] ${
@@ -104,7 +114,7 @@ export const Sidebar = () => {
                       ></RadioGroup.Description>
                     </div>
                   </div>
-                </>
+                </Link>
               )}
             </RadioGroup.Option>
           ))}

@@ -4,7 +4,7 @@ import { Bell } from "solar-icon-set";
 
 export const Navbar = () => {
   return (
-    <div className="flex sticky top-0 left-0 px-6 py-5 w-full justify-between items-center border-b border-ligth-stroke bg-tremor-brand-inverted">
+    <div className="flex sticky top-0 left-0 px-6 py-5 w-full justify-between items-center border-b border-ligth-stroke bg-tremor-brand-inverted z-50">
       <TextInput placeholder="Поиск" className="w-[400px] h-10" />
       <div className="flex gap-3">
         <div className="flex items-center justify-center rounded-full border border-ligth-stroke w-[40px] h-[40px] text-light-text">

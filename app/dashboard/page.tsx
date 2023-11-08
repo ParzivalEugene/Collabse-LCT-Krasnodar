@@ -1,5 +1,7 @@
 "use client";
 
+import { InfoCard } from "@/components/dashboard/InfoCard";
+import { Avatar } from "@chakra-ui/react";
 import {
   Button,
   Card,
@@ -12,17 +14,21 @@ import {
   TableHead,
   TableHeaderCell,
   TableRow,
-  Text,
   TextInput,
 } from "@tremor/react";
 import Link from "next/link";
+import { CardSearch } from "solar-icon-set";
 
 enum PlanStatus {
   Created = "Создан",
   Draft = "Черновик",
 }
 
-enum WorkerStatus {}
+enum WorkerStatus {
+  Active = "По плану",
+  Inactive = "Отставание",
+  NotStarted = "Не начато",
+}
 
 const data = [
   {
@@ -39,7 +45,53 @@ const data = [
   },
   {
     name: "Баллы",
-    text: 8400,
+    text: "8400",
+  },
+];
+
+const employeesData = [
+  {
+    name: "Всего",
+    text: "28",
+  },
+  {
+    name: "Активные",
+    text: "15",
+  },
+  {
+    name: "Новые",
+    text: "2",
+  },
+  {
+    name: "Прошли план",
+    text: "7",
+  },
+];
+
+const employees = [
+  {
+    name: "Пётр Головастиков",
+    position: "Младший разработчик",
+    status: WorkerStatus.Active,
+    progress: 82,
+  },
+  {
+    name: "Оксана Колотушкина",
+    position: "UX/UI дизайнер",
+    status: WorkerStatus.Inactive,
+    progress: 50,
+  },
+  {
+    name: "Виктор Витькин",
+    position: "C# разработчик",
+    status: WorkerStatus.NotStarted,
+    progress: 0,
+  },
+  {
+    name: "Павлентий Писичкин",
+    position: "Frontend стажер",
+    status: WorkerStatus.NotStarted,
+    progress: 45,
   },
 ];
 
@@ -99,10 +151,7 @@ const Dashboard = () => {
         <div className="flex gap-6 w-full flex-col">
           <div className="flex gap-6 w-full">
             {data.map((item, key) => (
-              <Card key={key} className="space-y-2">
-                <Text>{item.name}</Text>
-                <Metric>{item.text}</Metric>
-              </Card>
+              <InfoCard key={key} {...item} />
             ))}
           </div>
           <div className="flex gap-6 w-full">
@@ -179,8 +228,60 @@ const Dashboard = () => {
               />
             </Card>
           </div>
+          <div className="flex justify-between w-full">
+            <h1>Сотрудники</h1>
+            <TextInput
+              placeholder="Поиск по сотрудникам"
+              className="w-[400px] h-10"
+              icon={CardSearch}
+            />
+          </div>
+          <div className="flex gap-6 w-full">
+            {employeesData.map((item, key) => (
+              <InfoCard key={key} {...item} />
+            ))}
+          </div>
+          <Card>
+            <Table>
+              <TableHead>
+                <TableRow>
+                  <TableHeaderCell className="pl-14">
+                    Имя Фамилия
+                  </TableHeaderCell>
+                  <TableHeaderCell>Должность</TableHeaderCell>
+                  <TableHeaderCell>Статус</TableHeaderCell>
+                  <TableHeaderCell>Выполнение, %</TableHeaderCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {employees.map((item, key) => (
+                  <TableRow key={key}>
+                    <TableCell className="flex items-center gap-2">
+                      <Avatar name={item.name} size="sm" />
+                      {item.name}
+                    </TableCell>
+                    <TableCell>{item.position}</TableCell>
+                    <TableCell>
+                      <div
+                        className={`${
+                          item.status === WorkerStatus.Active
+                            ? "border-green text-green bg-green"
+                            : item.status === WorkerStatus.Inactive
+                            ? "border-orange text-orange bg-orange"
+                            : "border-red text-red bg-red"
+                        } bg-opacity-10 w-min px-2 py-1 rounded-lg border`}
+                      >
+                        {item.status}
+                      </div>
+                    </TableCell>
+                    <TableCell>{item.progress}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </Card>
         </div>
-        <Card className="w-[380px] min-w-[380px] p-6 space-y-4">
+        <Card className="w-[380px] min-w-[380px] p-6 space-y-4 h-min">
           <h2 className="font-medium">Планы адаптации</h2>
           <TextInput placeholder="Поиск" className="w-full h-10" />
           <Table>
