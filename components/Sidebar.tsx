@@ -2,7 +2,7 @@
 import { RadioGroup } from "@headlessui/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   CalculatorMinimalistic,
   ClipboardCheck,
@@ -64,24 +64,23 @@ const items = [
 ];
 
 const activeItem = (item: string) => {
-  if (items.map((item) => item.name).includes(item)) {
+  if (items.map((item) => item.href).includes(item)) {
     return item;
-  } else return items[0].name;
+  } else return items[0].href;
 };
 
 export const Sidebar = () => {
-  const pathname = usePathname().slice(1).split("/")[0];
-  const [selected, setSelected] = useState(activeItem(pathname));
+  const selected = activeItem("/" + usePathname().split("/")[1]);
 
   return (
     <div className="fixed top-0 left-0 h-screen w-60 flex flex-col px-8 py-6 border-r border-ligth-stroke ">
       <h2 className="font-medium text-center">ProBoard</h2>
       <nav className="mt-10">
-        <RadioGroup value={selected} onChange={setSelected}>
+        <RadioGroup value={selected} >
           {items.map((item) => (
             <RadioGroup.Option
               key={item.name}
-              value={item.name}
+              value={item.href}
               className={({ checked }) =>
                 `${checked ? "bg-blue bg-opacity-20 text-white" : "bg-white"}
                     relative flex cursor-pointer rounded-full p-3 focus:outline-none `
