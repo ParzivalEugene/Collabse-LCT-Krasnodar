@@ -3,7 +3,6 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 interface UserModel {
   username: string;
   role: string;
-
 }
 
 interface UserSlice {
@@ -30,14 +29,6 @@ const userSlice = createSlice({
       const isAuth = true;
       state.isAuth = isAuth;
     },
-    // setUser: (state, action: PayloadAction<UserModel>) => {
-    //   state.user = {
-    //     role: action.payload.role,
-    //     firstName: action.payload.firstName,
-    //     lastName: action.payload.lastName,
-    //     organizationId: action.payload.organizationId,
-    //   };
-    // },
     logout: (state) => {
       state.token = null;
       state.user = null;
