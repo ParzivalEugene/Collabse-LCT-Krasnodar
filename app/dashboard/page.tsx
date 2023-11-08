@@ -2,7 +2,6 @@
 
 import { InfoCard } from "@/components/dashboard/InfoCard";
 import { Spotlight } from "@/components/dashboard/Spotlight";
-import { Avatar } from "@chakra-ui/react";
 import {
   Button,
   Card,
@@ -219,7 +218,6 @@ const Dashboard = () => {
                 {employees.map((item, key) => (
                   <TableRow key={key}>
                     <TableCell className="flex items-center gap-2">
-                      <Avatar name={item.name} size="sm" />
                       {item.name}
                     </TableCell>
                     <TableCell>{item.position}</TableCell>

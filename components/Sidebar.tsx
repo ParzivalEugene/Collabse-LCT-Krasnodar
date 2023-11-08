@@ -2,7 +2,6 @@
 import { RadioGroup } from "@headlessui/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
 import {
   CalculatorMinimalistic,
   ClipboardCheck,
@@ -76,7 +75,7 @@ export const Sidebar = () => {
     <div className="fixed top-0 left-0 h-screen w-60 flex flex-col px-8 py-6 border-r border-ligth-stroke ">
       <h2 className="font-medium text-center">ProBoard</h2>
       <nav className="mt-10">
-        <RadioGroup value={selected} >
+        <RadioGroup value={selected}>
           {items.map((item) => (
             <RadioGroup.Option
               key={item.name}

@@ -1,6 +1,4 @@
-import { Avatar } from "@chakra-ui/react";
 import {
-  Button,
   Card,
   Table,
   TableBody,
@@ -79,16 +77,14 @@ const employees = [
     status: WorkerStatus.NotStarted,
     progress: 0,
     lastActive: "11.09.2023",
-  }
-
-]
+  },
+];
 
 const page = () => {
   return (
     <div className="flex flex-col w-full px-6 py-8 gap-6">
       <div className="flex justify-between">
         <h1 className="font-medium">Сотрудники ({employees.length})</h1>
-        
       </div>
       <Card>
         <Table>
@@ -107,7 +103,6 @@ const page = () => {
             {employees.map((item, key) => (
               <TableRow key={key}>
                 <TableCell className="flex items-center gap-2">
-                  <Avatar name={item.name} size="sm" />
                   {item.name}
                 </TableCell>
                 <TableCell>{item.position}</TableCell>
