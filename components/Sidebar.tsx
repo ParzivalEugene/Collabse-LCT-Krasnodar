@@ -81,7 +81,7 @@ export const Sidebar = () => {
               key={item.name}
               value={item.href}
               className={({ checked }) =>
-                `${checked ? "bg-blue bg-opacity-20 text-white" : "bg-white"}
+                `${checked ? "bg-blue-500 bg-opacity-20 text-blue-500" : "bg-white"}
                     relative flex cursor-pointer rounded-full p-3 focus:outline-none `
               }
             >

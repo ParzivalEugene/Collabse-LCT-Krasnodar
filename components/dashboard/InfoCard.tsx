@@ -15,7 +15,7 @@ export const InfoCard: React.FC<InfoCardProps> = ({
   href = "/",
 }) => {
   return (
-    <Card className="flex flex-col justify-between gap-2">
+    <Card className="flex flex-col justify-between gap-2 min-w-fit">
       <Text>{name}</Text>
       <div className="flex w-full justify-between">
         <Metric>{text}</Metric>

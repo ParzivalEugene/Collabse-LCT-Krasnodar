@@ -1,3 +1,4 @@
+import { Avatar } from "@/components/dashboard";
 import {
   Card,
   Table,
@@ -103,6 +104,7 @@ const page = () => {
             {employees.map((item, key) => (
               <TableRow key={key}>
                 <TableCell className="flex items-center gap-2">
+                  <Avatar name={item.name} size="36" round={true} />
                   {item.name}
                 </TableCell>
                 <TableCell>{item.position}</TableCell>
@@ -112,10 +114,10 @@ const page = () => {
                   <div
                     className={`${
                       item.status === WorkerStatus.Active
-                        ? "border-green text-green bg-green"
+                        ? "border-green-500 text-green-500 bg-green-500"
                         : item.status === WorkerStatus.Inactive
-                        ? "border-orange text-orange bg-orange"
-                        : "border-red text-red bg-red"
+                        ? "border-orange-500 text-orange-500 bg-orange-500"
+                        : "border-red-500 text-red-500 bg-red-500"
                     } bg-opacity-10 w-min px-2 py-1 rounded-lg border`}
                   >
                     {item.status}

@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const NotFound = () => {
   return (
-    <div className="flex flex-row items-center h-full">
+    <div className="flex flex-row items-center flex-1">
       <div className="flex flex-col items-center w-full p-6 mt-20">
         <div className="flex flex-col items-start">
           <Image

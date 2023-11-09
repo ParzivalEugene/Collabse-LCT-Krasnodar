@@ -19,10 +19,11 @@ export default {
       sm: ["12px", "16px"],
     },
     colors: {
-      blue: "#64B3ED",
-      green: "#4AD078",
-      orange: "#FF7E20",
-      red: "#F9341A",
+      "blue-500": "#64B3ED",
+      "green-500": "#4AD078",
+      "orange-500": "#FF7E20",
+      "red-500": "#F9341A",
+      "violet-500": "#9F7AEA",
       "ligth-stroke": "#F4F4F4",
       "light-text": "#97A0AC",
       bg: "#FAFAFA",
@@ -36,6 +37,7 @@ export default {
         indigo: colors.indigo,
         violet: colors.violet,
         fuchsia: colors.fuchsia,
+        white: colors.white,
         // light mode
         tremor: {
           brand: {

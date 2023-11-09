@@ -1,7 +1,5 @@
 "use client";
-
-import { InfoCard } from "@/components/dashboard/InfoCard";
-import { Spotlight } from "@/components/dashboard/Spotlight";
+import { InfoCard, Spotlight } from "@/components/dashboard";
 import {
   Button,
   Card,
@@ -141,7 +139,7 @@ const Dashboard = () => {
     <div className="flex flex-col w-full px-6 py-10 gap-6">
       <div className="flex justify-between">
         <h1 className="font-medium">Дашборд</h1>
-        <Button className="py-[10px] px-[24px]">
+        <Button className="py-[10px] px-[24px] text-white" color="blue">
           <span className="text-base">Выгрузить</span>
         </Button>
       </div>
@@ -159,13 +157,13 @@ const Dashboard = () => {
                 value={92}
                 radius={80}
                 strokeWidth={8}
-                color={"fuchsia"}
+                color={"blue"}
               >
                 <ProgressCircle
                   value={87}
                   strokeWidth={8}
                   radius={66}
-                  color={"sky"}
+                  color={"violet"}
                 >
                   <div className="flex flex-col items-center">
                     <h2>90%</h2>
@@ -176,7 +174,7 @@ const Dashboard = () => {
               <Legend
                 className="mt-3"
                 categories={["АППГ", "Текущий период"]}
-                colors={["fuchsia", "sky"]}
+                colors={["blue", "violet"]}
               />
             </Card>
             <Spotlight
@@ -185,7 +183,11 @@ const Dashboard = () => {
                 orange: "вызывают трудности",
                 green: "в норме",
               }}
-              legend={{ red: "— Более 50% не подтверждено", orange: "— 20–30% ошибок", green: "— Менее 20% ошибок" }}
+              legend={{
+                red: "— Более 50% не подтверждено",
+                orange: "— 20–30% ошибок",
+                green: "— Менее 20% ошибок",
+              }}
               states={{ red: 16, orange: 20, green: 53 }}
             />
           </div>
@@ -225,10 +227,10 @@ const Dashboard = () => {
                       <div
                         className={`${
                           item.status === WorkerStatus.Active
-                            ? "border-green text-green bg-green"
+                            ? "border-green-500 text-green-500 bg-green-500"
                             : item.status === WorkerStatus.Inactive
-                            ? "border-orange text-orange bg-orange"
-                            : "border-red text-red bg-red"
+                            ? "border-orange-500 text-orange-500 bg-orange-500"
+                            : "border-red-500 text-red-500 bg-red-500"
                         } bg-opacity-10 w-min px-2 py-1 rounded-lg border`}
                       >
                         {item.status}
@@ -259,8 +261,8 @@ const Dashboard = () => {
                     <div
                       className={`${
                         item.status === PlanStatus.Created
-                          ? "border-green text-green bg-green"
-                          : "border-orange text-orange bg-orange"
+                          ? "border-green-500 text-green-500 bg-green-500"
+                          : "border-orange-500 text-orange-500 bg-orange-500"
                       } bg-opacity-10 w-min px-2 py-1 rounded-lg border`}
                     >
                       {item.status}

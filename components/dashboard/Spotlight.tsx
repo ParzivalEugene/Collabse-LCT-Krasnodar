@@ -1,4 +1,4 @@
-import { Card, Metric } from "@tremor/react";
+import { Card, Legend, Metric } from "@tremor/react";
 import Link from "next/link";
 import React from "react";
 
@@ -26,14 +26,6 @@ interface SpotlightCardProps {
   text: string;
 }
 
-interface SpotlightLegendProps {
-  legend: {
-    red: string;
-    orange: string;
-    green: string;
-  };
-}
-
 const SpotlightCard: React.FC<SpotlightCardProps> = ({
   color,
   metric,
@@ -41,7 +33,7 @@ const SpotlightCard: React.FC<SpotlightCardProps> = ({
 }) => {
   return (
     <div className="flex gap-3 w-full">
-      <div className={`w-[6px] h-20 bg-${color} rounded-full`} />
+      <div className={`w-[6px] h-20 bg-${color}-500 rounded-full`} />
       <div>
         <Metric>{metric}</Metric>
         <p className="text-sm">{text}</p>
@@ -49,33 +41,6 @@ const SpotlightCard: React.FC<SpotlightCardProps> = ({
           <span className="text-sm text-light-text">Подбронее</span>
         </Link>
       </div>
-    </div>
-  );
-};
-
-const SpotlightLegend: React.FC<SpotlightLegendProps> = ({ legend }) => {
-  const data = [
-    {
-      color: "red",
-      text: legend.red,
-    },
-    {
-      color: "orange",
-      text: legend.orange,
-    },
-    {
-      color: "green",
-      text: legend.green,
-    },
-  ];
-  return (
-    <div className="flex flex-wrap gap-6">
-      {data.map((item, key) => (
-        <div key={key} className="flex gap-2 items-center">
-          <div className={`w-2 h-2 rounded-full bg-${item.color}`} />
-          <p className="text-sm">{legend.red}</p>
-        </div>
-      ))}
     </div>
   );
 };
@@ -104,7 +69,10 @@ export const Spotlight: React.FC<SpotlightProps> = ({
           text={description.green}
         />
       </div>
-      <SpotlightLegend legend={legend} />
+      <Legend
+        categories={[legend.red, legend.orange, legend.green]}
+        colors={["red", "orange", "green"]}
+      />
     </Card>
   );
 };
