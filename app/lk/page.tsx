@@ -48,22 +48,7 @@ const page = () => {
           <span className="text-base">Выгрузить</span>
         </Button>
       </div>
-      <div className="flex gap-6">
-        <Card className="space-y-4 min-w-[260px] w-min">
-          <h2 className="font-medium">Барометр cотрудника</h2>
-          <ProgressCircle
-            value={90}
-            radius={70}
-            strokeWidth={12}
-            color={"violet"}
-          >
-            <div className="flex flex-col items-center">
-              <h2>90%</h2>
-              <p className="text-sm">Выполнено</p>
-            </div>
-          </ProgressCircle>
-        </Card>
-
+      <div className="flex gap-6 mt-6">
         <Card>
           <h2 className="font-medium pl-4 mb-4">План адаптации</h2>
           <Table>
@@ -92,6 +77,20 @@ const page = () => {
               </TableRow>
             </TableBody>
           </Table>
+        </Card>
+        <Card className="space-y-4 min-w-[260px] w-min">
+          <h2 className="font-medium">Барометр cотрудника</h2>
+          <ProgressCircle
+            value={90}
+            radius={70}
+            strokeWidth={12}
+            color={"violet"}
+          >
+            <div className="flex flex-col items-center">
+              <h2>90%</h2>
+              <p className="text-sm">Выполнено</p>
+            </div>
+          </ProgressCircle>
         </Card>
       </div>
 

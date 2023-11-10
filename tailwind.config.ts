@@ -4,9 +4,10 @@ const colors = require("tailwindcss/colors");
 
 export default {
   content: [
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./app/**/*.{tsx,mdx}",
     "./node_modules/@tremor/**/*.{js,ts,jsx,tsx,mdx}",
-    "./components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./components/**/*.{tsx,mdx}",
+    ".content/**/*.{tsx,mdx}",
   ],
   theme: {
     transparent: "transparent",
@@ -38,6 +39,7 @@ export default {
         violet: colors.violet,
         fuchsia: colors.fuchsia,
         white: colors.white,
+        black: colors.black,
         // light mode
         tremor: {
           brand: {

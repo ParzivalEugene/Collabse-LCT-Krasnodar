@@ -5,14 +5,14 @@
 
 @layer utilities {
   h1 {
-    @apply text-h1;
+    @apply text-h1 font-medium;
   }
 
   h2 {
-    @apply text-h2;
+    @apply text-h2 font-medium;
   }
 
   h3 {
-    @apply text-h3;
+    @apply text-h3 font-medium;
   }
 }
