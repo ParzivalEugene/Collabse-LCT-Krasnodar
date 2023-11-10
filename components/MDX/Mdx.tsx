@@ -1,23 +1,20 @@
-import { cn } from "@/lib/utils"
-import { Card } from "@tremor/react"
-import { useMDXComponent } from "next-contentlayer/hooks"
-import Image from "next/image"
-import React from "react"
+import { cn } from "@/lib/utils";
+import { Card } from "@tremor/react";
+import { useMDXComponent } from "next-contentlayer/hooks";
+import Image from "next/image";
+import React from "react";
 
 const components = {
   h1: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h1
-      className={cn(
-        "font-medium mb-6",
-        className
-      )}
+      className={cn("mt-2 scroll-m-20 font-medium tracking-tight", className)}
       {...props}
     />
   ),
   h2: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h2
       className={cn(
-        "font-medium mb-4",
+        "mt-10 scroll-m-20 pb-1 font-medium tracking-tight first:mt-0",
         className
       )}
       {...props}
@@ -26,7 +23,7 @@ const components = {
   h3: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h3
       className={cn(
-        "font-medium mb-3 mt-2",
+        "[&:not(:first-child)]:mt-8 scroll-m-20 font-medium tracking-tight",
         className
       )}
       {...props}
@@ -38,9 +35,12 @@ const components = {
       {...props}
     />
   ),
-  p: ({ className, ...props }: React.HtmlHTMLAttributes<HTMLParagraphElement>) => (
+  p: ({
+    className,
+    ...props
+  }: React.HtmlHTMLAttributes<HTMLParagraphElement>) => (
     <p
-      className={cn("leading-7 [&:not(:first-child)]:mb-2", className)}
+      className={cn("leading-7 [&:not(:first-child)]:mt-6", className)}
       {...props}
     />
   ),
@@ -53,7 +53,10 @@ const components = {
   li: ({ className, ...props }: React.HtmlHTMLAttributes<HTMLLIElement>) => (
     <li className={cn("mt-2", className)} {...props} />
   ),
-  blockquote: ({ className, ...props }: React.HtmlHTMLAttributes<HTMLQuoteElement>) => (
+  blockquote: ({
+    className,
+    ...props
+  }: React.HtmlHTMLAttributes<HTMLQuoteElement>) => (
     <blockquote
       className={cn(
         "mt-6 border-l-2 pl-6 italic [&>*]:text-muted-foreground",
@@ -82,7 +85,10 @@ const components = {
       {...props}
     />
   ),
-  th: ({ className, ...props }: React.HtmlHTMLAttributes<HTMLTableCellElement>) => (
+  th: ({
+    className,
+    ...props
+  }: React.HtmlHTMLAttributes<HTMLTableCellElement>) => (
     <th
       className={cn(
         "border px-4 py-2 text-left font-bold [&[align=center]]:text-center [&[align=right]]:text-right",
@@ -91,7 +97,10 @@ const components = {
       {...props}
     />
   ),
-  td: ({ className, ...props }: React.HtmlHTMLAttributes<HTMLTableCellElement>) => (
+  td: ({
+    className,
+    ...props
+  }: React.HtmlHTMLAttributes<HTMLTableCellElement>) => (
     <td
       className={cn(
         "border px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right",
@@ -103,35 +112,29 @@ const components = {
   pre: ({ className, ...props }: React.HtmlHTMLAttributes<HTMLPreElement>) => (
     <pre
       className={cn(
-        "mb-4 overflow-x-auto rounded-lg border border-tremor-border shadow-sm bg-ligth-stroke py-4",
+        "mb-4 mt-6 overflow-x-auto rounded-lg border border-tremor-border shadow-sm bg-ligth-stroke py-4",
         className
       )}
       {...props}
     />
   ),
   code: ({ className, ...props }: React.HtmlHTMLAttributes<HTMLElement>) => (
-    <code
-      className={cn(
-        "p-2 font-mono text-sm",
-        className
-      )}
-      {...props}
-    />
+    <code className={cn("p-2 font-mono text-sm", className)} {...props} />
   ),
   Image,
-  Card
-}
+  Card,
+};
 
 interface MdxProps {
-  code: string
+  code: string;
 }
 
 export function Mdx({ code }: MdxProps) {
-  const Component = useMDXComponent(code)
+  const Component = useMDXComponent(code);
 
   return (
-    <div className="mdx p-6">
+    <div className="mdx flex-1">
       <Component components={components} />
     </div>
-  )
+  );
 }

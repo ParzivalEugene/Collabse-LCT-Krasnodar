@@ -72,7 +72,7 @@ export const Sidebar = () => {
   const selected = activeItem("/" + usePathname().split("/")[1]);
 
   return (
-    <div className="fixed top-0 left-0 h-screen w-60 flex flex-col px-8 py-6 border-r border-ligth-stroke ">
+    <aside className="fixed top-0 left-0 h-screen w-60 flex flex-col px-8 py-6 border-r border-ligth-stroke ">
       <h2 className="font-medium text-center">ProBoard</h2>
       <nav className="mt-10">
         <RadioGroup value={selected}>
@@ -81,7 +81,11 @@ export const Sidebar = () => {
               key={item.name}
               value={item.href}
               className={({ checked }) =>
-                `${checked ? "bg-blue-500 bg-opacity-20 text-blue-500" : "bg-white"}
+                `${
+                  checked
+                    ? "bg-blue-500 bg-opacity-20 text-blue-500"
+                    : "bg-white"
+                }
                     relative flex cursor-pointer rounded-full p-3 focus:outline-none `
               }
             >
@@ -118,6 +122,6 @@ export const Sidebar = () => {
           ))}
         </RadioGroup>
       </nav>
-    </div>
+    </aside>
   );
 };
