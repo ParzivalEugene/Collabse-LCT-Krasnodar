@@ -49,8 +49,7 @@ export const TableOfContext = () => {
       <MainBlock title="Первые шаги" time="10" deadline="20.10.2021" />
       <MainBlock title="Первый день" time="10" deadline="20.10.2021" />
       <SecondaryBlock title="1. Все про офис (и немного больше)" time="2" />
-      <SecondaryBlock title="2. Знакомство" time="3" />
-      <SecondaryBlock title="3. Дуем травку (тимбилдинг)" time="5" />
+      <SecondaryBlock title="2. Знакомство" time="8" />
       <MainBlock title="Команда" time="10" deadline="20.10.2021" />
     </Card>
   );
