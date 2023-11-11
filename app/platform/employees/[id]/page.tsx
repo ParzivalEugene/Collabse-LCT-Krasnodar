@@ -1,5 +1,7 @@
 "use client";
 import { Avatar, InfoCard, Spotlight } from "@/components/dashboard";
+import { getName } from "@/lib/utils";
+import { useGetWorkersQuery } from "@/services/HRService";
 import {
   Button,
   Card,
@@ -12,14 +14,21 @@ import {
   TableRow,
 } from "@tremor/react";
 
-const page = ({ params }: { params: { id: string } }) => {
+const page = ({ params }: { params: { id: Number } }) => {
+  const { data, error, isLoading } = useGetWorkersQuery();
+
+  if (isLoading) return <div>Загрузка...</div>;
+  if (error) return <div>Ошибка</div>;
+
+  const worker = data?.find((worker) => worker.workerId === Number(params.id));
+  if (!worker) return <div>Сотрудник не найден</div>;
   return (
     <div className="flex flex-col w-full px-6 py-10 gap-6">
       <div className="flex justify-between w-full items-end">
         <div className="flex gap-4">
           <Avatar name="Виктор Витькин" size="60" round={true} />
           <div className="flex flex-col gap-1">
-            <h2>Виктор Витькин</h2>
+            <h2>{getName(worker)}</h2>
             <div className="flex gap-2 text-light-text items-center">
               <p>UX дизайнер</p>
               <div className="rounded-full w-1 h-1 bg-light-text" />

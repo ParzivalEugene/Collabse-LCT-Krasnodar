@@ -1,4 +1,5 @@
 "use client";
+import { useUser } from "@/store/hooks";
 import { RadioGroup } from "@headlessui/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -8,68 +9,101 @@ import {
   Dialog2,
   Document,
   Folder,
+  MedalRibbonStar,
   PieChart,
   QuestionCircle,
   Settings,
   UserId,
 } from "solar-icon-set";
 
-const items = [
+const itemsWorker = [
   {
     name: "Дашборд",
     icon: <PieChart iconStyle="Outline" size={20} />,
-    href: "/dashboard",
-  },
-  {
-    name: "Сотрудники",
-    icon: <UserId iconStyle="Outline" size={20} />,
-    href: "/employees",
+    href: "/platform/lk",
   },
   {
     name: "Планы адаптации",
     icon: <ClipboardCheck iconStyle="Outline" size={20} />,
-    href: "/plans",
+    href: "/platform/plans",
   },
   {
-    name: "Шаблоны",
-    icon: <Document iconStyle="Linear" size={20} />,
-    href: "/templates",
+    name: "Достижения",
+    icon: <MedalRibbonStar iconStyle="Linear" size={20} />,
   },
   {
     name: "Материалы",
     icon: <Folder iconStyle="Linear" size={20} />,
-    href: "/docs",
   },
   {
     name: "Чат",
     icon: <Dialog2 iconStyle="Linear" size={20} />,
-    href: "/chat",
-  },
-  {
-    name: "Отчёты",
-    icon: <CalculatorMinimalistic iconStyle="Linear" size={20} />,
-    href: "/reports",
   },
   {
     name: "Справка",
     icon: <QuestionCircle iconStyle="Linear" size={20} />,
-    href: "/help",
   },
   {
     name: "Настройки",
     icon: <Settings iconStyle="Linear" size={20} />,
-    href: "/settings",
   },
 ];
 
-const activeItem = (item: string) => {
-  if (items.map((item) => item.href).includes(item)) {
-    return item;
-  } else return items[0].href;
+const itemsHR = [
+  {
+    name: "Дашборд",
+    icon: <PieChart iconStyle="Outline" size={20} />,
+    href: "/platform/dashboard",
+  },
+  {
+    name: "Сотрудники",
+    icon: <UserId iconStyle="Outline" size={20} />,
+    href: "/platform/employees",
+  },
+  {
+    name: "Планы адаптации",
+    icon: <ClipboardCheck iconStyle="Outline" size={20} />,
+    href: "/platform/plans",
+  },
+  {
+    name: "Шаблоны",
+    icon: <Document iconStyle="Linear" size={20} />,
+  },
+  {
+    name: "Материалы",
+    icon: <Folder iconStyle="Linear" size={20} />,
+  },
+  {
+    name: "Чат",
+    icon: <Dialog2 iconStyle="Linear" size={20} />,
+  },
+  {
+    name: "Отчёты",
+    icon: <CalculatorMinimalistic iconStyle="Linear" size={20} />,
+  },
+  {
+    name: "Справка",
+    icon: <QuestionCircle iconStyle="Linear" size={20} />,
+  },
+  {
+    name: "Настройки",
+    icon: <Settings iconStyle="Linear" size={20} />,
+  },
+];
+
+const activeItem = (item: string, role: string) => {
+  const items = role === "hr_lead" ? itemsHR : itemsWorker;
+  if (items.map((item) => item.href).includes(item)) return item;
+  else return items[0].href;
 };
 
 export const Sidebar = () => {
-  const selected = activeItem("/" + usePathname().split("/")[1]);
+  const user = useUser();
+  const selected = activeItem(
+    "/" + usePathname().split("/").slice(1, 3).join("/"),
+    user.user?.role || "worker"
+  );
+  const items = user.user?.role === "hr_lead" ? itemsHR : itemsWorker;
 
   return (
     <aside className="fixed top-0 left-0 h-screen w-60 flex flex-col px-8 py-6 border-r border-ligth-stroke ">
@@ -78,6 +112,7 @@ export const Sidebar = () => {
         <RadioGroup value={selected}>
           {items.map((item) => (
             <RadioGroup.Option
+              disabled={item.href === undefined}
               key={item.name}
               value={item.href}
               className={({ checked }) =>
@@ -90,11 +125,15 @@ export const Sidebar = () => {
               }
             >
               {({ checked }) => (
-                <Link href={item.href}>
+                <Link href={item.href || ""}>
                   <div className="flex w-full items-center gap-2">
                     <span
                       className={`h-[20px] w-[20px] ${
-                        checked ? "text-blue" : "text-gray-900"
+                        checked
+                          ? "text-blue"
+                          : item.href
+                          ? "text-gray-900"
+                          : "text-light-text"
                       }`}
                     >
                       {item.icon}
@@ -103,17 +142,15 @@ export const Sidebar = () => {
                       <RadioGroup.Label
                         as="p"
                         className={`font-medium  ${
-                          checked ? "text-blue" : "text-gray-900"
+                          checked
+                            ? "text-blue"
+                            : item.href
+                            ? "text-gray-900"
+                            : "text-light-text"
                         }`}
                       >
                         {item.name}
                       </RadioGroup.Label>
-                      <RadioGroup.Description
-                        as="span"
-                        className={`inline ${
-                          checked ? "text-sky-100" : "text-gray-500"
-                        }`}
-                      ></RadioGroup.Description>
                     </div>
                   </div>
                 </Link>

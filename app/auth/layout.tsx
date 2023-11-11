@@ -1,5 +1,3 @@
-import { Navbar, Sidebar } from "@/components";
-
 export const metadata = {
   title: "EasyBoard",
   description:
@@ -12,12 +10,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <>
-      <Sidebar />
-      <main className="ml-60 w-full bg-bg h-fit min-h-screen flex-col">
-        <Navbar />
-        {children}
-      </main>
-    </>
+    <div className="grid w-screen h-screen items-center justify-center">
+      {children}
+    </div>
   );
 }

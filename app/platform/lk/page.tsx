@@ -1,5 +1,6 @@
 "use client";
 import { Avatar } from "@/components/dashboard";
+import { useUser } from "@/store/hooks";
 import {
   Button,
   Card,
@@ -12,8 +13,11 @@ import {
   TableHead,
   TableHeaderCell,
   TableRow,
+  Title,
 } from "@tremor/react";
 import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const DataCard = () => (
   <Card className="p-5">
@@ -30,13 +34,20 @@ const DataCard = () => (
 );
 
 const page = () => {
+  const user = useUser().user;
+  const router = useRouter();
+
+  if (!user) {
+    router.push("/auth/login");
+    return <Title className="p-6">"Редиректинг на страницу логина ..."</Title>;
+  }
   return (
     <div className="flex flex-col w-full px-6 py-10 gap-6">
       <div className="flex justify-between w-full items-end">
         <div className="flex gap-4">
-          <Avatar name="Виктор Витькин" size="60" round={true} />
+          <Avatar name={user.username} size="60" round={true} />
           <div className="flex flex-col gap-1">
-            <h2>Виктор Витькин</h2>
+            <h2>{user.username}</h2>
             <div className="flex gap-2 text-light-text items-center">
               <p>UX дизайнер</p>
               <div className="rounded-full w-1 h-1 bg-light-text" />
@@ -104,7 +115,9 @@ const page = () => {
       <div className="flex flex-col gap-10">
         <div className="flex gap-36">
           <div className="relative">
-            <DataCard />
+            <Link href="employees/userId/plans/welcome">
+              <DataCard />
+            </Link>
             <div className="absolute -right-20 top-[84px] h-[168px] w-20 border-r-4 border-t-4 border-blue-500 border-dashed z-0 rounded-tr-2xl" />
           </div>
           <div className="relative">

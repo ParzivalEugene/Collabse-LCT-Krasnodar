@@ -7,10 +7,11 @@ import {
   TableHeaderCell,
   TableRow,
 } from "@tremor/react";
+import Link from "next/link";
 
 const plans = [
   {
-    name: "Графические редакторы для работы",
+    name: "Пример плана",
     skills: ["Лояльность"],
     department: "Дизайн",
     status: "Создан",
@@ -42,10 +43,25 @@ const page = () => {
           <TableBody>
             {plans.map((plan) => (
               <TableRow key={plan.name}>
-                <TableCell>{plan.name}</TableCell>
+                <TableCell>
+                  <Link href="employees/userId/plans/welcome" className="underline">{plan.name}</Link>
+                </TableCell>
                 <TableCell>{plan.skills.join(", ")}</TableCell>
                 <TableCell>{plan.department}</TableCell>
-                <TableCell>{plan.status}</TableCell>
+                <TableCell>
+                  <div
+                    // className={`${
+                    //   item.status === WorkerStatus.Active
+                    //     ? "border-green-500 text-green-500 bg-green-500"
+                    //     : item.status === WorkerStatus.Inactive
+                    //     ? "border-orange-500 text-orange-500 bg-orange-500"
+                    //     : "border-red-500 text-red-500 bg-red-500"
+                    // } bg-opacity-10 w-min px-2 py-1 rounded-lg border`}
+                    className="border-green-500 text-green-500 bg-green-500 bg-opacity-10 w-min px-2 py-1 rounded-lg border"
+                  >
+                    В норме
+                  </div>
+                </TableCell>
                 <TableCell>{plan.progress}</TableCell>
                 <TableCell>{plan.started}</TableCell>
                 <TableCell>{plan.ended}</TableCell>

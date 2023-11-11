@@ -5,7 +5,7 @@ export interface UserModel {
 }
 
 export interface Employee {
-  workerId: string;
+  workerId: Number;
   username: string;
   name: string;
   surname: string;

@@ -84,7 +84,7 @@ const employees = [
     progress: 0,
   },
   {
-    name: "Павлентий Писичкин",
+    name: "Павлентий Григорьев",
     position: "Frontend стажер",
     status: WorkerStatus.NotStarted,
     progress: 45,
