@@ -25,7 +25,7 @@ interface LinkEmployee {
 export const HRApi = createApi({
   reducerPath: "HRApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:8000",
+    baseUrl: "http://51.250.106.1:8000",
     prepareHeaders: (headers) => {
       const token = localStorage.getItem("token");
       if (token) {

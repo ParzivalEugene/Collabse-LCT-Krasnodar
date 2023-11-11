@@ -16,7 +16,7 @@ const page = () => {
   const handleSubmit = (event: any) => {
     event.preventDefault();
     setIsLoading(true);
-    fetch(`http://localhost:8000/token`, {
+    fetch(`http://51.250.106.1:8000/token`, {
       method: "POST",
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
