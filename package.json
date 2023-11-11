@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "concurrently \"contentlayer dev\" \"next dev\"",
     "build": "contentlayer build && next build",
-    "start": "concurrently \"contentlayer dev\" \"next start\"",
+    "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {

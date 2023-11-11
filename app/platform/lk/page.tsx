@@ -13,11 +13,10 @@ import {
   TableHead,
   TableHeaderCell,
   TableRow,
-  Title,
 } from "@tremor/react";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
 
 const DataCard = () => (
   <Card className="p-5">
@@ -35,11 +34,9 @@ const DataCard = () => (
 
 const page = () => {
   const user = useUser().user;
-  const router = useRouter();
 
   if (!user) {
-    router.push("/auth/login");
-    return <Title className="p-6">"Редиректинг на страницу логина ..."</Title>;
+    redirect("/auth/login");
   }
   return (
     <div className="flex flex-col w-full px-6 py-10 gap-6">

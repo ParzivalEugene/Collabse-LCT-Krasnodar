@@ -8,12 +8,14 @@ import { useState } from "react";
 const page = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const router = useRouter();
   const dispatch = useAppDispatch();
 
   const handleSubmit = (event: any) => {
     event.preventDefault();
+    setIsLoading(true);
     fetch(`http://localhost:8000/token`, {
       method: "POST",
       headers: {
@@ -69,6 +71,7 @@ const page = () => {
         />
         <Button
           onClick={(e) => handleSubmit(e)}
+          loading={isLoading}
           className="mt-6 w-80"
           color="blue"
           size="xl"
