@@ -28,7 +28,7 @@ const items = [
   {
     name: "Планы адаптации",
     icon: <ClipboardCheck iconStyle="Outline" size={20} />,
-    href: "/adaptation-plans",
+    href: "/plans",
   },
   {
     name: "Шаблоны",

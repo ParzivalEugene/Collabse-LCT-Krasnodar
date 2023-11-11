@@ -2,6 +2,7 @@ import { ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 
 import { env } from "@/env.mjs";
+import { Employee } from "@/models";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -18,4 +19,8 @@ export function formatDate(input: string | number): string {
 
 export function absoluteUrl(path: string) {
   return `${env.NEXT_PUBLIC_APP_URL}${path}`;
+}
+
+export function getName(employee: Employee) {
+  return `${employee.name} ${employee.surname}`;
 }

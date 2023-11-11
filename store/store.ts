@@ -1,11 +1,13 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 
-import { UserAPI } from "@/services/UserService";
+import { HRApi } from "@/services/HRService";
+import { WorkerAPI } from "@/services/WorkerService";
 import { userSliceReducer } from "./reducers";
 
 const rootReducer = combineReducers({
   userSlice: userSliceReducer,
-  [UserAPI.reducerPath]: UserAPI.reducer,
+  [WorkerAPI.reducerPath]: WorkerAPI.reducer,
+  [HRApi.reducerPath]: HRApi.reducer,
 });
 
 export const store = configureStore({
@@ -14,7 +16,7 @@ export const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: false,
-    }).concat(UserAPI.middleware),
+    }).concat(WorkerAPI.middleware, HRApi.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

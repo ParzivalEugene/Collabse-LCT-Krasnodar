@@ -1,9 +1,5 @@
+import { UserModel } from "@/models";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-
-interface UserModel {
-  username: string;
-  role: string;
-}
 
 interface UserSlice {
   token: string | null;
@@ -23,21 +19,28 @@ const userSlice = createSlice({
   reducers: {
     setUserToken: (state, action: PayloadAction<string>) => {
       const token = action.payload;
+      localStorage.setItem("token", token);
       state.token = token;
     },
     setIsAuth: (state) => {
       const isAuth = true;
       state.isAuth = isAuth;
     },
+    setUser: (state, action: PayloadAction<UserModel>) => {
+      state.user = {
+        id: action.payload.id,
+        username: action.payload.username,
+        role: action.payload.role,
+      };
+    },
     logout: (state) => {
       state.token = null;
       state.user = null;
       state.isAuth = false;
-      localStorage.removeItem("persist:root");
     },
   },
 });
 
-export const { setUserToken, logout, setIsAuth } = userSlice.actions;
+export const { setUserToken, logout, setIsAuth, setUser } = userSlice.actions;
 
 export const { reducer: userSliceReducer } = userSlice;
